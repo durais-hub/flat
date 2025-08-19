@@ -17,6 +17,8 @@ function flatGivenObjectToPath(obj: any, parentPropKey=''):  Record<string, any>
    return Object.entries(obj).reduce((aggregator: Record<string, any>, [key, value]) => {
     const freshKey = parentPropKey ? `${parentPropKey}.${key}` : key;
 
+    // If the value is an array, we recursively call the function.
+    // Otherwise, we just assign the value to the key.
     if (Array.isArray(value)) {
       value.forEach((item, index) => {
         const arrayKey = `${freshKey}[${index}]`;
@@ -26,8 +28,10 @@ function flatGivenObjectToPath(obj: any, parentPropKey=''):  Record<string, any>
           aggregator[arrayKey] = item;
         }
       });
+      // If the value is an object
     } else if (typeof value === 'object' && value) {
       Object.assign(aggregator, flatGivenObjectToPath(value, freshKey));
+      // If the data is primitive javascript type
     }else {
       aggregator[freshKey] = value;
     }

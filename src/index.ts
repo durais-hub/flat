@@ -25,5 +25,7 @@ function flatGivenObjectToPath(obj: any, parentKey=''): any  {
 }
 
 
+console.log("input object:", input);
 const flattened = flatGivenObjectToPath(input);
+console.log("Flattened object:"); 
 console.log(flattened);

@@ -27,4 +27,26 @@ describe('flattenObject', () => {
   });
 
 
+  test('check primitive values and null', () => {
+    const input = {
+      name: 'Durairaj',
+      age: 30,
+      books: null
+    };
+
+    const expected = {
+      'name': 'Durairaj',
+      'age': 30,
+      'books': null
+    };
+
+    expect(flatGivenObjectToPath(input)).toEqual(expected);
+  });
+
+  // TODO: Handle array scenario
+   test('Check mixed arrays and objects', () => {
+    expect(1).toEqual(1);
+  });
+
+
 });

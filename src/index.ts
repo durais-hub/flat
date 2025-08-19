@@ -13,8 +13,15 @@ const input = {
   }
 };
 
-function flatGivenObjectToPath(obj: any): any  {
-  return Object.entries(obj).forEach((key, value) => console.log(`contents ${key},: ${value}`), {});
+function flatGivenObjectToPath(obj: any, parentKey=''): any  {
+   return Object.entries(obj).reduce((aggregator: Record<string, any>, [key, value]) => {
+    const newKey = parentKey ? `${parentKey}.${key}` : key;
+    if (typeof value === 'object' && !Array.isArray(value) && value !== null) {
+      aggregator[newKey] = value;
+    }
+
+    return aggregator;
+  }, {});
 }
 
 

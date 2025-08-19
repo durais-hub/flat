@@ -1,0 +1,25 @@
+{
+  "name": "flat",
+  "version": "1.0.0",
+  "description": "to flat object passed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/durais-hub/flat.git"
+  },
+  "author": "Durairaj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/durais-hub/flat/issues"
+  },
+  "homepage": "https://github.com/durais-hub/flat#readme",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.0.5",
+    "ts-jest": "^29.4.1",
+    "typescript": "^5.9.2"
+  }
+}

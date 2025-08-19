@@ -47,3 +47,5 @@ console.log("Input object:", input);
 const flattened = flatGivenObjectToPath(input);
 console.log("Flattened object:"); 
 console.log(flattened);
+
+export default flatGivenObjectToPath

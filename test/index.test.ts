@@ -1,8 +1,30 @@
-import { add } from '../src/index';
+import flatGivenObjectToPath from '../src/index';
 
-describe('add function', () => {
-  it('should add two numbers correctly', () => {
-    expect(add(1, 2)).toBe(3);
-    expect(add(5, -3)).toBe(2);
+describe('flattenObject', () => {
+
+  test('handles empty object', () => {
+    expect(flatGivenObjectToPath({})).toEqual({});
   });
+
+  test('flattens a simple nested object', () => {
+    const input = {
+      user: {
+        name: 'Durairaj',
+        address: {
+          city: 'Coimbatore',
+          zip: 641001
+        }
+      }
+    };
+
+    const expected = {
+      'user.name': 'Durairaj',
+      'user.address.city': 'Coimbatore',
+      'user.address.zip': 641001
+    };
+
+    expect(flatGivenObjectToPath(input)).toEqual(expected);
+  });
+
+
 });

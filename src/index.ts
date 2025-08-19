@@ -17,6 +17,8 @@ function flatGivenObjectToPath(obj: any, parentKey=''): any  {
    return Object.entries(obj).reduce((aggregator: Record<string, any>, [key, value]) => {
     const newKey = parentKey ? `${parentKey}.${key}` : key;
     if (typeof value === 'object' && !Array.isArray(value) && value !== null) {
+      Object.assign(aggregator, flatGivenObjectToPath(value, newKey));
+    }else {
       aggregator[newKey] = value;
     }
 

@@ -13,7 +13,7 @@ const input = {
   }
 };
 
-function flatGivenObjectToPath(obj: any, parentPropKey=''): any  {
+function flatGivenObjectToPath(obj: any, parentPropKey=''):  Record<string, any>  {
    return Object.entries(obj).reduce((aggregator: Record<string, any>, [key, value]) => {
     const freshKey = parentPropKey ? `${parentPropKey}.${key}` : key;
 

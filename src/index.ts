@@ -37,6 +37,8 @@ function flatGivenObjectToPath(obj: any, parentPropKey=''):  Record<string, any>
     }
 
     return aggregator;
+
+    // Return the flattened object, or empty object if the input is not an object
   }, {});
 }
 

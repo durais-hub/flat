@@ -13,13 +13,23 @@ const input = {
   }
 };
 
-function flatGivenObjectToPath(obj: any, parentKey=''): any  {
+function flatGivenObjectToPath(obj: any, parentPropKey=''): any  {
    return Object.entries(obj).reduce((aggregator: Record<string, any>, [key, value]) => {
-    const newKey = parentKey ? `${parentKey}.${key}` : key;
-    if (typeof value === 'object' && !Array.isArray(value) && value !== null) {
-      Object.assign(aggregator, flatGivenObjectToPath(value, newKey));
+    const freshKey = parentPropKey ? `${parentPropKey}.${key}` : key;
+
+    if (Array.isArray(value)) {
+      value.forEach((item, index) => {
+        const arrayKey = `${freshKey}[${index}]`;
+        if (typeof item === 'object' && item !== null) {
+          Object.assign(aggregator, flatGivenObjectToPath(item, arrayKey));
+        } else {
+          aggregator[arrayKey] = item;
+        }
+      });
+    } else if (typeof value === 'object' && value) {
+      Object.assign(aggregator, flatGivenObjectToPath(value, freshKey));
     }else {
-      aggregator[newKey] = value;
+      aggregator[freshKey] = value;
     }
 
     return aggregator;
@@ -27,7 +37,7 @@ function flatGivenObjectToPath(obj: any, parentKey=''): any  {
 }
 
 
-console.log("input object:", input);
+console.log("Input object:", input);
 const flattened = flatGivenObjectToPath(input);
 console.log("Flattened object:"); 
 console.log(flattened);
